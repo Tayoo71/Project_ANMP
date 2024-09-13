@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemWhatWePlay"
+        android:icon="@drawable/baseline_videogame_asset_24"
+        android:title="What We Play"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/itemOurSchedule"
+        android:icon="@drawable/baseline_calendar_month_24"
+        android:title="Our Schedule"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/itemWhoWeAre"
+        android:icon="@drawable/baseline_people_outline_24"
+        android:title="Who We Are"
+        app:showAsAction="always" />
+</menu>

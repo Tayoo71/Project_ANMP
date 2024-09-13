@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/esport_navigation"
+    app:startDestination="@id/itemWhatWePlay">
+
+    <fragment
+        android:id="@+id/itemWhatWePlay"
+        android:name="com.example.project_anmp.WhatWePlayFragment"
+        android:label="What We Play"
+        tools:layout="@layout/fragment_what_we_play">
+        <action
+            android:id="@+id/action_whatWePlayFragment_to_achievementFragment"
+            app:destination="@id/achievementFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_whatWePlayFragment_to_teamsFragment"
+            app:destination="@id/teamsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemWhoWeAre"
+        android:name="com.example.project_anmp.WhoWeAreFragment"
+        android:label="Who We Are"
+        tools:layout="@layout/fragment_who_we_are" />
+    <fragment
+        android:id="@+id/itemOurSchedule"
+        android:name="com.example.project_anmp.OurScheduleFragment"
+        android:label="Schedule"
+        tools:layout="@layout/fragment_our_schedule">
+        <action
+            android:id="@+id/action_ourScheduleFragment_to_scheduleDetailFragment"
+            app:destination="@id/scheduleDetailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/achievementFragment"
+        android:name="com.example.project_anmp.AchievementFragment"
+        android:label="E-Sports"
+        tools:layout="@layout/fragment_achievement">
+        <action
+            android:id="@+id/action_achievementFragment_to_whatWePlayFragment"
+            app:destination="@id/itemWhatWePlay"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/itemWhatWePlay" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamsFragment"
+        android:name="com.example.project_anmp.TeamsFragment"
+        android:label="Teams"
+        tools:layout="@layout/fragment_teams">
+        <action
+            android:id="@+id/action_teamsFragment_to_whatWePlayFragment"
+            app:destination="@id/itemWhatWePlay"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/itemWhatWePlay" />
+        <action
+            android:id="@+id/action_teamsFragment_to_teamsDetailFragment"
+            app:destination="@id/teamsDetailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamsDetailFragment"
+        android:name="com.example.project_anmp.TeamsDetailFragment"
+        android:label="Teams"
+        tools:layout="@layout/fragment_teams_detail">
+        <action
+            android:id="@+id/action_teamsDetailFragment_to_teamsFragment"
+            app:destination="@id/teamsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/teamsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scheduleDetailFragment"
+        android:name="com.example.project_anmp.ScheduleDetailFragment"
+        android:label="E-Sports"
+        tools:layout="@layout/fragment_schedule_detail">
+        <action
+            android:id="@+id/action_scheduleDetailFragment_to_ourScheduleFragment"
+            app:destination="@id/itemOurSchedule"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/itemOurSchedule" />
+    </fragment>
+</navigation>
