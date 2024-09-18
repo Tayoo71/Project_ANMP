@@ -47,7 +47,9 @@
             app:destination="@id/itemWhatWePlay"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/itemWhatWePlay" />
+            app:launchSingleTop="false"
+            app:popUpTo="@id/itemWhatWePlay"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/teamsFragment"
@@ -59,7 +61,8 @@
             app:destination="@id/itemWhatWePlay"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/itemWhatWePlay" />
+            app:popUpTo="@id/itemWhatWePlay"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_teamsFragment_to_teamsDetailFragment"
             app:destination="@id/teamsDetailFragment"
@@ -76,7 +79,8 @@
             app:destination="@id/teamsFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/teamsFragment" />
+            app:popUpTo="@id/teamsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/scheduleDetailFragment"
@@ -88,6 +92,8 @@
             app:destination="@id/itemOurSchedule"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/itemOurSchedule" />
+            app:launchSingleTop="false"
+            app:popUpTo="@id/itemOurSchedule"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

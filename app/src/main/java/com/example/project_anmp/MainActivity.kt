@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         // Setup Bottom Navigation
         binding.bottomNav.setupWithNavController(navController)
+
     }
 
     // Pastikan navigasi up bekerja dengan AppBarConfiguration
