@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/itemWhatWePlay"
-        android:name="com.example.project_anmp.WhatWePlayFragment"
+        android:name="com.example.project_anmp.view.WhatWePlayFragment"
         android:label="What We Play"
         tools:layout="@layout/fragment_what_we_play">
         <action
@@ -23,23 +23,23 @@
     </fragment>
     <fragment
         android:id="@+id/itemWhoWeAre"
-        android:name="com.example.project_anmp.WhoWeAreFragment"
+        android:name="com.example.project_anmp.view.WhoWeAreFragment"
         android:label="Who We Are"
         tools:layout="@layout/fragment_who_we_are" />
     <fragment
         android:id="@+id/itemOurSchedule"
-        android:name="com.example.project_anmp.OurScheduleFragment"
+        android:name="com.example.project_anmp.view.OurScheduleFragment"
         android:label="Schedule"
         tools:layout="@layout/fragment_our_schedule">
         <action
-            android:id="@+id/action_ourScheduleFragment_to_scheduleDetailFragment"
+            android:id="@+id/actionScheduleDetail"
             app:destination="@id/scheduleDetailFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/achievementFragment"
-        android:name="com.example.project_anmp.AchievementFragment"
+        android:name="com.example.project_anmp.view.AchievementFragment"
         android:label="E-Sports"
         tools:layout="@layout/fragment_achievement">
         <action
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/teamsFragment"
-        android:name="com.example.project_anmp.TeamsFragment"
+        android:name="com.example.project_anmp.view.TeamsFragment"
         android:label="Teams"
         tools:layout="@layout/fragment_teams">
         <action
@@ -71,7 +71,7 @@
     </fragment>
     <fragment
         android:id="@+id/teamsDetailFragment"
-        android:name="com.example.project_anmp.TeamsDetailFragment"
+        android:name="com.example.project_anmp.view.TeamsDetailFragment"
         android:label="Teams"
         tools:layout="@layout/fragment_teams_detail">
         <action
@@ -84,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/scheduleDetailFragment"
-        android:name="com.example.project_anmp.ScheduleDetailFragment"
+        android:name="com.example.project_anmp.view.ScheduleDetailFragment"
         android:label="E-Sports"
         tools:layout="@layout/fragment_schedule_detail">
         <action
@@ -95,5 +95,8 @@
             app:launchSingleTop="false"
             app:popUpTo="@id/itemOurSchedule"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="selectedSchedule"
+            app:argType="com.example.project_anmp.model.Schedule" />
     </fragment>
 </navigation>
