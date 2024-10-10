@@ -4,7 +4,7 @@
     "event": "Regional Qualifier - Valorant",
     "game": "Valorant",
     "team": "Team A",
-    "datetime": "05 Sep 10:00 AM",
+    "datetime": "2023-09-05T10:00:00",
     "location": "Los Angeles, CA",
     "venue_photo": "https://picsum.photos/200/300",
     "description": "This high-stakes event will bring together top teams from across the region, all competing for a chance to advance to the national finals. Expect intense gameplay, strategic plays, and thrilling moments as teams battle it out in one of the most popular first-person shooters."
@@ -14,7 +14,7 @@
     "event": "League of Legends Workshop",
     "game": "LOL",
     "team": "Team C",
-    "datetime": "10 Sep 11:00 AM",
+    "datetime": "2023-09-10T11:00:00",
     "location": "San Francisco, CA",
     "venue_photo": "https://picsum.photos/200/300",
     "description": "Join this comprehensive workshop where professionals share strategies and tips to dominate the Summoner's Rift in League of Legends. Perfect for players looking to improve their skills and teamwork."
@@ -24,7 +24,7 @@
     "event": "Call of Duty Championship",
     "game": "COD",
     "team": "Team A",
-    "datetime": "07 Oct 12:00 PM",
+    "datetime": "2023-10-07T12:00:00",
     "location": "New York, NY",
     "venue_photo": "https://picsum.photos/200/300",
     "description": "Top teams from across the globe will face off in the Call of Duty Championship. Watch the intense competition as teams fight for glory in this fast-paced and tactical shooter game."
@@ -34,7 +34,7 @@
     "event": "Dota 2 Livestream",
     "game": "Dota 2",
     "team": "Team B",
-    "datetime": "11 Nov 2:00 PM",
+    "datetime": "2023-11-11T14:00:00",
     "location": "Online",
     "venue_photo": "https://picsum.photos/200/300",
     "description": "Witness Team B as they showcase their mastery of Dota 2 in an exclusive online livestream event, complete with expert commentary and live audience interactions."
@@ -44,7 +44,7 @@
     "event": "Fortnite Invitational",
     "game": "Fortnite",
     "team": "Team A",
-    "datetime": "04 Dec 3:00 PM",
+    "datetime": "2023-12-04T15:00:00",
     "location": "Las Vegas, NV",
     "venue_photo": "https://picsum.photos/200/300",
     "description": "Watch the best Fortnite players compete in this invitational event featuring high-level gameplay, crazy builds, and intense battles to be the last one standing."
