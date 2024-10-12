@@ -14,3 +14,9 @@ data class Schedule(
     val venue_photo: String,
     val description: String
 ) : Parcelable
+@Parcelize
+data class Game(
+    val name: String,
+    val description: String,
+    val urlLink: String,
+) : Parcelable
