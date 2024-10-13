@@ -36,6 +36,15 @@ class WhatWePlayFragment : Fragment() {
         binding.recViewGame.adapter = whatWePlayAdapter
 
         observeViewModel()
+
+        // Refresh layout handling
+        binding.refreshLayout.setOnRefreshListener {
+            binding.recViewGame.visibility = View.GONE
+            binding.txtError.visibility = View.GONE
+            binding.progressLoad.visibility = View.VISIBLE
+            viewModel.refresh()
+            binding.refreshLayout.isRefreshing = false
+        }
     }
 
     private fun observeViewModel() {
