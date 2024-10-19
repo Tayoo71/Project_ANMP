@@ -8,6 +8,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.project_anmp.model.Achievement
 import com.example.project_anmp.model.Game
 import com.example.project_anmp.model.Schedule
 import com.google.gson.Gson
@@ -15,8 +16,8 @@ import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
 
 class AchievementViewModel(application: Application) : AndroidViewModel(application) {
-    val ourSchedulesLD = MutableLiveData<ArrayList<Schedule>>()
-    val scheduleLoadErrorLD = MutableLiveData<Boolean>()
+    val achievementLD = MutableLiveData<ArrayList<Achievement>>()
+    val achievementLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
 
     val TAG = "volleyTag"
@@ -24,7 +25,7 @@ class AchievementViewModel(application: Application) : AndroidViewModel(applicat
 
     // Fungsi untuk memuat data dari server (atau sumber data lainnya)
     fun refresh(){
-        scheduleLoadErrorLD.value = false
+        achievementLoadErrorLD.value = false
         loadingLD.value = true
 
         val url = "https://raw.githubusercontent.com/Tayoo71/Project_ANMP/refs/heads/master/API_JSON/Achievement.json"
@@ -34,15 +35,15 @@ class AchievementViewModel(application: Application) : AndroidViewModel(applicat
             val stringRequest = StringRequest(
                 Request.Method.GET, url, { response ->
                     // Jika berhasil mengambil data
-                    val sType = object : TypeToken<ArrayList<Schedule>>() {}.type
-                    val result = Gson().fromJson<ArrayList<Schedule>>(response, sType)
-                    ourSchedulesLD.value = result
+                    val sType = object : TypeToken<ArrayList<Achievement>>() {}.type
+                    val result = Gson().fromJson<ArrayList<Achievement>>(response, sType)
+                    achievementLD.value = result
                     loadingLD.value = false
                     Log.d("showVolley", result.toString())
                 }, { error ->
                     // Jika gagal mengambil data
                     Log.d("showVolley", error.toString())
-                    scheduleLoadErrorLD.value = true
+                    achievementLoadErrorLD.value = true
                     loadingLD.value = false
                 }
             )

@@ -16,6 +16,7 @@ import com.example.project_anmp.R
 import com.example.project_anmp.databinding.FragmentAchievementBinding
 import com.example.project_anmp.databinding.FragmentTeamsDetailBinding
 import com.example.project_anmp.model.Achievement
+import com.example.project_anmp.model.Game
 import com.example.project_anmp.view.OurScheduleListAdapter.OurScheduleViewHolder
 import com.example.project_anmp.viewmodel.AchievementViewModel
 import com.example.project_anmp.viewmodel.OurScheduleViewModel
@@ -27,6 +28,9 @@ import java.lang.Exception
 class AchievementFragment : Fragment() {
     private lateinit var binding: FragmentAchievementBinding
     private lateinit var viewModel: AchievementViewModel
+    var achievementYear : MutableList <String> = ArrayList()
+    var achievementDescriptions : MutableList <String> = ArrayList()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,30 +51,19 @@ class AchievementFragment : Fragment() {
         val achievementList = arrayListOf<Achievement>()
         val selectedGame= AchievementFragmentArgs.fromBundle(requireArguments()).selectedGame
 
-        binding.txtGameAchievement.text = selectedGame.name
+        viewModel.achievementLD.observe(viewLifecycleOwner) { achievementList ->
+            updateAchievementList(achievementList, selectedGame)
+        }
 
-        var achievement : MutableList <String> = ArrayList()
-        var achievementYear : MutableList <String> = ArrayList()
-
-        achievementYear.add("All")
-
-        for (x in 0 .. achievementList.count()-1){
-            if(selectedGame.name == achievementList[x].gameName){
-                if (achievementYear.count()!=1){
-                    if(!achievementYear.contains(achievementList[x].year)){
-                        achievementYear.add(achievementList[x].year)
-                    }
-                }
-                else {
-                    achievementYear.add(achievementList[x].year)
-                }
-                achievement.add(achievementList[x].achievementDescription)
+        viewModel.achievementLD.observe(viewLifecycleOwner) { achievementList ->
+            if (achievementList.isNotEmpty()) {
+                binding.txtGameAchievement.text = selectedGame.name
             }
         }
 
-        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, achievementYear)
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerAchievement.adapter = spinnerAdapter
+        binding.txtGameAchievement.text = selectedGame.name
+
+
 
         val picasso = Picasso.Builder(binding.root.context)
         picasso.listener { picasso, uri, exception ->
@@ -89,18 +82,57 @@ class AchievementFragment : Fragment() {
             })
 
         var textAdd= ""
-        binding.spinnerAchievement.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        binding.spinnerAchievement.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                var textAdd = "" // Reset textAdd untuk memulai yang baru
+                var int = 0
                 val selectedItem = parent?.getItemAtPosition(position).toString()
-                if(selectedItem == "All"){
-                    for (x in 0 .. achievement.count()-1){
-                            textAdd.plus(binding.txtAchievement.text)
-                            textAdd.plus(achievement[x])
-                            textAdd.plus(achieveme)
+                if (selectedItem == "All") {
+                    int = 0
+                    for (x in 0 until achievementDescriptions.count()) {
+                        textAdd += "${int + 1}. ${achievementDescriptions[x]}\n"
+                        int += 1
+                    }
+                } else {
+                    int = 0
+                    for (x in 0 until achievementDescriptions.count()) {
+                        if (achievementDescriptions[x].contains(selectedItem)) {
+                            textAdd += "${int + 1}. ${achievementDescriptions[x]}\n"
+                            int += 1
                         }
                     }
                 }
+                binding.txtAchievement.text = textAdd
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Kosongkan text jika tidak ada yang dipilih
+                binding.txtAchievement.text = ""
             }
         }
+    }
+
+    private fun updateAchievementList(achievementList: List<Achievement>, selectedGame: Game) {
+        achievementYear = mutableListOf("All")
+        achievementDescriptions = mutableListOf<String>()
+
+        for (achievement in achievementList) {
+            if (selectedGame.name == achievement.gameName) {
+                if (!achievementYear.contains(achievement.year)) {
+                    achievementYear.add(achievement.year)
+                }
+                achievementDescriptions.add(achievement.achievementDescription)
+            }
+        }
+
+        // Perbarui spinner dengan tahun-tahun yang relevan
+        val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, achievementYear)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerAchievement.adapter = spinnerAdapter
+
+        // Simpan deskripsi pencapaian untuk digunakan nanti
+        binding.spinnerAchievement.tag = achievementDescriptions
+
+        binding.txtGameAchievement.text = achievementDescriptions[0]
     }
 }
