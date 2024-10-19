@@ -54,7 +54,7 @@ RecyclerView.Adapter<OurScheduleListAdapter.OurScheduleViewHolder>()
         return "$day\n$month"
     }
 
-    // Fungsi untuk memperbarui daftar mobil
+    // Fungsi untuk memperbarui daftar Schedule
     @SuppressLint("NotifyDataSetChanged")
     fun updateOurScheduleList(newOurScheduleList: ArrayList<Schedule>) {
         ourScheduleList.clear()
