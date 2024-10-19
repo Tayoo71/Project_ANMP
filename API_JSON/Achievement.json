@@ -1,0 +1,127 @@
+[
+    {
+      "gameName": "Valorant",
+      "year": "2022",
+      "achievementDescription": "Flawless Victory at the Spring Valorant Cup (2022) - Team A"
+    },
+    {
+      "gameName": "Valorant",
+      "year": "2023",
+      "achievementDescription": "Champion of the Regional Valorant Showdown (2023) - Team A"
+    },
+    {
+      "gameName": "Valorant",
+      "year": "2023",
+      "achievementDescription": "MVP of the Season (2023) - Team B"
+    },
+    {
+      "gameName": "Valorant",
+      "year": "2023",
+      "achievementDescription": "Top 4 Finish in the International Valorant Championship (2023) - Team C"
+    },
+    {
+      "gameName": "Valorant",
+      "year": "2024",
+      "achievementDescription": "Best Defensive Team Award (2024) - Team A"
+    }, 
+    {
+      "gameName": "League of Legends",
+      "year": "2022",
+      "achievementDescription": "Flawless Victory at the Summer League of Legends Cup (2022) - Team A"
+    }, 
+    {
+      "gameName": "League of Legends",
+      "year": "2023",
+      "achievementDescription": "Champion of the Regional League of Legends Championship (2023) - Team A"
+    },
+    {
+      "gameName": "League of Legends",
+      "year": "2023",
+      "achievementDescription": "Top 5 Finish in the International League of Legends Championship (2023) - Team B"
+    },
+     {
+      "gameName": "League of Legends",
+      "year": "2024",
+      "achievementDescription": "MVP of the Season (2024) - Team B"
+    }, 
+    {
+      "gameName": "League of Legends",
+      "year": "2024",
+      "achievementDescription": "Best Defensive Team Award (2024) - Team A"
+    },
+    {
+      "gameName": "Call of Duty",
+      "year": "2022",
+      "achievementDescription": "Flawless Victory at the Summer League Call of Duty Season 2 (2022) - Team C"
+    },
+    {
+      "gameName": "Call of Duty",
+      "year": "2023",
+      "achievementDescription": "Champion of the Regional Call of Duty Championship (2023) - Team A"
+    },
+    {
+      "gameName": "Call of Duty",
+      "year": "2023",
+      "achievementDescription": "Top 3 Finish in the International Call of Duty Championship (2023) - Team B"
+    },
+    {
+      "gameName": "Call of Duty",
+      "year": "2024",
+      "achievementDescription": "MVP of the Season (2024) - Team B"
+    },
+    {
+      "gameName": "Call of Duty",
+      "year": "2024",
+      "achievementDescription": "Best Defensive Team Award (2024) - Team A"
+    },
+    {
+      "gameName": "Dota 2",
+      "year": "2022",
+      "achievementDescription": "Flawless Victory at the Summer Dota 2 Season 12 (2022) - Team A"
+    },
+    {
+      "gameName": "Dota 2",
+      "year": "2022",
+      "achievementDescription": "Top 3 Finish in the International 11 (2022) - Team B"
+    },
+    {
+      "gameName": "Dota 2",
+      "year": "2023",
+      "achievementDescription": "Champion of the Regional Dota 2 Championship (2023) - Team A"
+    },
+    {
+      "gameName": "Dota 2",
+      "year": "2024",
+      "achievementDescription": "MVP of the Season (2024) - Team B"
+    },
+    {
+      "gameName": "Dota 2",
+      "year": "2024",
+      "achievementDescription": "Best Defensive Team Award (2024) - Team A"
+    },
+    {
+      "gameName": "Fortnite",
+      "year": "2022",
+      "achievementDescription": "Flawless Victory at the Winter Fortnite Championship (2022) - Team C"
+    },
+    {
+      "gameName": "Fortnite",
+      "year": "2022",
+      "achievementDescription": "Top 5 Finish in the Regional Fortnite Championship (2022) - Team B"
+    },
+    {
+      "gameName": "Fortnite",
+      "year": "2023",
+      "achievementDescription": "Champion of the Regional Fortnite Championship (2023) - Team A"
+    },
+    {
+      "gameName": "Fortnite",
+      "year": "2024",
+      "achievementDescription": "MVP of the Season (2024) - Team B"
+    },
+    {
+      "gameName": "Fortnite",
+      "year": "2024",
+      "achievementDescription": "Best Defensive Team Award (2024) - Team A"
+    }
+  ]

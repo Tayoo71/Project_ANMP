@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.example.project_anmp.R
+import android.widget.Toast
 
 class WhoWeAreFragment : Fragment() {
 
@@ -26,6 +27,9 @@ class WhoWeAreFragment : Fragment() {
         likeButton.setOnClickListener {
             likeCount++
             likeTextView.text = likeCount.toString()
+
+            // Menampilkan Toast setelah tombol ditekan
+            Toast.makeText(requireContext(), "Berhasil menambahkan Like!", Toast.LENGTH_SHORT).show()
         }
 
         return view
