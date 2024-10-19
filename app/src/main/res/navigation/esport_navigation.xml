@@ -50,6 +50,9 @@
             app:launchSingleTop="false"
             app:popUpTo="@id/itemWhatWePlay"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="selectedGame"
+            app:argType="com.example.project_anmp.model.Game" />
     </fragment>
     <fragment
         android:id="@+id/teamsFragment"
@@ -68,6 +71,9 @@
             app:destination="@id/teamsDetailFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <argument
+            android:name="selectedGame"
+            app:argType="com.example.project_anmp.model.Game" />
     </fragment>
     <fragment
         android:id="@+id/teamsDetailFragment"
@@ -81,6 +87,12 @@
             app:exitAnim="@android:anim/fade_out"
             app:popUpTo="@id/teamsFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="selectedGame"
+            app:argType="com.example.project_anmp.model.Game" />
+        <argument
+            android:name="selectedTeam"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/scheduleDetailFragment"

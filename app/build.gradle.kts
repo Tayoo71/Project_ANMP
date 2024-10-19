@@ -58,5 +58,5 @@ dependencies {
     implementation(libs.volley)
     implementation(libs.gson)
     implementation (libs.picasso)
-    
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 }

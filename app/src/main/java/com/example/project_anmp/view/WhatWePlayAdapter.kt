@@ -28,11 +28,11 @@ class WhatWePlayAdapter(val whatWePlayList: ArrayList<Game>) : RecyclerView.Adap
             .load(whatWePlayList[position].urlLink)
             .into(holder.binding.imageView)
         holder.binding.btnTeam.setOnClickListener {
-            val action = WhatWePlayFragmentDirections.actionWhatWePlayFragmentToTeamsFragment()
+            val action = WhatWePlayFragmentDirections.actionWhatWePlayFragmentToTeamsFragment(whatWePlayList[position])
             Navigation.findNavController(it).navigate(action)
         }
         holder.binding.btnAchievement.setOnClickListener {
-            val action = WhatWePlayFragmentDirections.actionWhatWePlayFragmentToAchievementFragment()
+            val action = WhatWePlayFragmentDirections.actionWhatWePlayFragmentToAchievementFragment(whatWePlayList[position])
             Navigation.findNavController(it).navigate(action)
         }
         //holder.binding.cardWhatWePlay.setOnClickListener {

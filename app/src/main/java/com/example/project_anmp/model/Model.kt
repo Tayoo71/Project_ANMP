@@ -20,3 +20,9 @@ data class Game(
     val description: String,
     val urlLink: String,
 ) : Parcelable
+@Parcelize
+data class Achievement(
+    val gameName: String,
+    val year: String,
+    val achievementDescription: String,
+) : Parcelable
