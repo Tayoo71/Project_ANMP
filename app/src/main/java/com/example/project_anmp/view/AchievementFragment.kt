@@ -46,9 +46,9 @@ class AchievementFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
         viewModel.refresh()
 
-        var i = 0
+        //var i = 0
 
-        val achievementList = arrayListOf<Achievement>()
+        //val achievementList = arrayListOf<Achievement>()
         val selectedGame= AchievementFragmentArgs.fromBundle(requireArguments()).selectedGame
 
         viewModel.achievementLD.observe(viewLifecycleOwner) { achievementList ->
@@ -133,6 +133,6 @@ class AchievementFragment : Fragment() {
         // Simpan deskripsi pencapaian untuk digunakan nanti
         binding.spinnerAchievement.tag = achievementDescriptions
 
-        binding.txtGameAchievement.text = achievementDescriptions[0]
+        //binding.txtGameAchievement.text = achievementDescriptions[0]
     }
 }
