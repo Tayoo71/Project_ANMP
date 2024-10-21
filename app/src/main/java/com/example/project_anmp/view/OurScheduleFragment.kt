@@ -50,7 +50,7 @@ private val ourScheduleListAdapter = OurScheduleListAdapter(arrayListOf())
     }
 
     fun observeViewModel(){
-        // Mengamati LiveData yang berisi daftar mobil
+        // Mengamati LiveData yang berisi daftar schedule
         viewModel.ourSchedulesLD.observe(viewLifecycleOwner, Observer {
             ourScheduleListAdapter.updateOurScheduleList(it)
             binding.recView.visibility = View.VISIBLE

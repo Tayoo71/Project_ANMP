@@ -28,6 +28,7 @@ import java.lang.Exception
 class AchievementFragment : Fragment() {
     private lateinit var binding: FragmentAchievementBinding
     private lateinit var viewModel: AchievementViewModel
+    // Menggunakan Mutable List untuk modifikasi datanya
     var achievementYear : MutableList <String> = ArrayList()
     var achievementDescriptions : MutableList <String> = ArrayList()
 
@@ -51,6 +52,7 @@ class AchievementFragment : Fragment() {
         //val achievementList = arrayListOf<Achievement>()
         val selectedGame= AchievementFragmentArgs.fromBundle(requireArguments()).selectedGame
 
+        // Mengamati LiveData yang berisi daftar achievement
         viewModel.achievementLD.observe(viewLifecycleOwner) { achievementList ->
             updateAchievementList(achievementList, selectedGame)
         }
