@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("androidx.navigation.safeargs.kotlin")
     id ("kotlin-parcelize")
+    id("kotlin-kapt")
 
 }
 
@@ -59,4 +60,12 @@ dependencies {
     implementation(libs.gson)
     implementation (libs.picasso)
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
+
+
 }
