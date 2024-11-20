@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/esport_navigation"
-    app:startDestination="@id/itemWhatWePlay">
+    app:startDestination="@id/itemSignIn">
 
     <fragment
         android:id="@+id/itemWhatWePlay"
@@ -20,6 +20,11 @@
             app:destination="@id/teamsFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_itemWhatWePlay_to_signInFragment"
+            app:destination="@id/itemSignIn"
+            app:popUpTo="@id/itemSignIn"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/itemWhoWeAre"
@@ -110,5 +115,33 @@
         <argument
             android:name="selectedSchedule"
             app:argType="com.example.project_anmp.model.Schedule" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemSignIn"
+        android:name="com.example.project_anmp.view.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_signUpFragment"
+            app:destination="@id/itemSignUp"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_itemWhatWePlay"
+            app:destination="@id/itemWhatWePlay"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemSignUp"
+        android:name="com.example.project_anmp.view.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signUpFragment_to_signInFragment"
+            app:destination="@id/itemSignIn"
+            app:popUpTo="@id/itemSignIn"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

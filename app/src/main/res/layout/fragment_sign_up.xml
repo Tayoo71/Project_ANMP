@@ -76,7 +76,7 @@
             android:layout_marginEnd="32dp"
             android:ems="10"
             android:hint="Password"
-            android:inputType="text"
+            android:inputType="text|textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,14 +91,14 @@
             android:layout_marginEnd="32dp"
             android:ems="10"
             android:hint="Repeat Password"
-            android:inputType="text"
+            android:inputType="text|textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/checkBoxAgreement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -116,7 +116,7 @@
             android:layout_marginTop="32dp"
             android:text="Back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxAgreement" />
 
         <Button
             android:id="@+id/btnSubmit"
@@ -124,9 +124,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
+            android:enabled="false"
             android:text="Submit"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxAgreement" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

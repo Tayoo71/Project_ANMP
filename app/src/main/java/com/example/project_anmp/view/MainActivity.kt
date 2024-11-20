@@ -39,6 +39,25 @@ class MainActivity : AppCompatActivity() {
         // Setup Bottom Navigation
         binding.bottomNav.setupWithNavController(navController)
 
+
+        // Observe navigation changes
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.itemSignIn, R.id.itemSignUp -> {
+                    // Hide Action Bar and Navigation Bars
+                    supportActionBar?.hide()
+                    binding.bottomNav.visibility = android.view.View.GONE
+                    binding.drawerLayout.setDrawerLockMode(androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                }
+
+                else -> {
+                    // Show Action Bar and Navigation Bars
+                    supportActionBar?.show()
+                    binding.bottomNav.visibility = android.view.View.VISIBLE
+                    binding.drawerLayout.setDrawerLockMode(androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_UNLOCKED)
+                }
+            }
+        }
     }
 
     // Pastikan navigasi up bekerja dengan AppBarConfiguration
