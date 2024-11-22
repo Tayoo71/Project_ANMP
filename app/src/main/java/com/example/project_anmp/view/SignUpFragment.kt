@@ -1,16 +1,24 @@
 package com.example.project_anmp.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.project_anmp.databinding.FragmentSignUpBinding
+import com.example.project_anmp.model.User
+import com.example.project_anmp.viewmodel.SignUpViewModel
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : Fragment(), SignUpActionsHandler {
     private lateinit var binding: FragmentSignUpBinding
+    private lateinit var viewModel: SignUpViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,49 +31,34 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.checkBoxAgreement.setOnClickListener {
-            binding.btnSubmit.isEnabled = binding.checkBoxAgreement.isChecked
-        }
+        // Initialize Data Binding
+        viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
 
-        // Trigger the back button using NavController
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        // Initialize User, Repeat Password, and Interface
+        val user = User("", "", "", "")
+        binding.user = user
+        binding.handler = this
 
-        binding.btnSubmit.setOnClickListener {
-            // Check if any required field is empty
-            if (binding.txtFirstName.text.isEmpty() ||
-                binding.txtUsername.text.isEmpty() ||
-                binding.txtPassword.text.isEmpty() ||
-                binding.txtRepeatPassword.text.isEmpty()
-            ) {
-                Toast.makeText(
-                    context,
-                    "All fields must be filled.",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-            // Check if passwords do not match
-            else if (binding.txtPassword.text.toString() != binding.txtRepeatPassword.text.toString()) {
-                Toast.makeText(
-                    context,
-                    "Password and Repeat Password must be the same.",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-            // Proceed with successful validation
-            else {
+        observeViewModel()
+    }
 
-
-                Toast.makeText(
-                    context,
-                    "Registration successful! Please Sign In to continue.",
-                    Toast.LENGTH_LONG
-                ).show()
+    fun observeViewModel() {
+        viewModel.signUpMessage.observe(viewLifecycleOwner, Observer {
+            if(it == "Sign-up successful!"){
                 findNavController().popBackStack()
             }
-        }
 
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        })
+    }
+
+    override fun onBackClicked(v: View) {
+        Navigation.findNavController(v).popBackStack()
+    }
+
+
+    override fun onSubmitClicked(obj: User, repeatPassword: String) {
+        viewModel.signUp(obj, repeatPassword)
     }
 
 }

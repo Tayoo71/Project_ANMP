@@ -1,8 +1,13 @@
 package com.example.project_anmp.model
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
+// Web Service
 @Parcelize
 data class Schedule(
     val id: Int,
@@ -26,3 +31,23 @@ data class Achievement(
     val year: String,
     val achievementDescription: String,
 ) : Parcelable
+
+
+// SQLite
+@Entity(
+    tableName = "User",
+    indices = [Index(value = ["username"], unique = true)] // Enforce unique constraint on username
+)
+data class User(
+    @ColumnInfo(name = "first_name")
+    var firstName:String,
+    @ColumnInfo(name = "last_name")
+    var LastName:String,
+    @ColumnInfo(name = "username")
+    var username:String,
+    @ColumnInfo(name = "password")
+    var password:String
+){
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}
