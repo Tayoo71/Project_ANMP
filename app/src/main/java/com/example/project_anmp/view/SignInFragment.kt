@@ -34,7 +34,7 @@ class SignInFragment : Fragment(), SignInActionsHandler {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
-        binding.handler = this  
+        binding.handler = this
         checkLoginStatus()
         observeViewModel()
     }
