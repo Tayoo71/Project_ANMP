@@ -49,15 +49,6 @@ class SignInFragment : Fragment(), SignInActionsHandler {
         }
     }
 
-//    private fun clearLoginData() {
-//        var sharedFile = "com.example.project_anmp"
-//        val sharedPreferences = requireContext().getSharedPreferences(sharedFile, Context.MODE_PRIVATE)
-//        with(sharedPreferences.edit()) {
-//            clear()
-//            apply()
-//        }
-//    }
-
     private fun observeViewModel() {
         viewModel.signInMessage.observe(viewLifecycleOwner, Observer {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()

@@ -43,6 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/bottom_menu" />
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        android:paddingTop="125dp"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
