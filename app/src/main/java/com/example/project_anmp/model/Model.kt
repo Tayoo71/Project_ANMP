@@ -35,18 +35,29 @@ data class Achievement(
 
 // SQLite
 @Entity(
-    tableName = "User",
+    tableName = "users",
     indices = [Index(value = ["username"], unique = true)] // Enforce unique constraint on username
 )
 data class User(
     @ColumnInfo(name = "first_name")
     var firstName:String,
     @ColumnInfo(name = "last_name")
-    var LastName:String,
+    var lastName:String,
     @ColumnInfo(name = "username")
     var username:String,
     @ColumnInfo(name = "password")
     var password:String
+){
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}
+
+@Entity(tableName = "proposals")
+data class Proposal(
+    val game: String,
+    val team: String,
+    val reason: String,
+    val status: String
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0

@@ -13,10 +13,21 @@ interface UserDao {
     fun insertUser(vararg user: User)
 
     // Query to check if a username already exists
-    @Query("SELECT COUNT(*) FROM User WHERE username = :username")
+    @Query("SELECT COUNT(*) FROM users WHERE username = :username")
     fun isUsernameTaken(username: String): Int
 
     // Query to get user data for sign-in validation
-    @Query("SELECT * FROM User WHERE username = :username AND password = :password")
+    @Query("SELECT * FROM users WHERE username = :username AND password = :password")
     fun getUserForSignIn(username: String, password: String): User?
+}
+
+@Dao
+interface ProposalDao {
+    // Insert a new proposal
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun insertProposal(vararg proposal: Proposal)
+
+    // Get all proposals
+    @Query("SELECT * FROM proposals ORDER BY uuid DESC")
+    fun getAllProposals(): List<Proposal>
 }

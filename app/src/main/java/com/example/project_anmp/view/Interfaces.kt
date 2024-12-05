@@ -12,3 +12,8 @@ interface SignInActionsHandler{
     fun onSignUpClicked(v: View)
     fun onSubmitClicked(username: String, password: String)
 }
+
+interface ApplyTeamActionsHandler{
+    fun onFabAddClicked(v: View)
+    fun onRefresh()
+}
