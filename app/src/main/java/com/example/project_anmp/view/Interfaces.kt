@@ -2,6 +2,7 @@ package com.example.project_anmp.view
 
 import android.view.View
 import android.widget.Spinner
+import com.example.project_anmp.model.ScheduleData
 import com.example.project_anmp.model.User
 
 interface SignUpActionsHandler {
@@ -21,4 +22,8 @@ interface ApplyTeamActionsHandler{
 
 interface NewApplyTeamActionsHandler{
     fun onSubmitClicked(game: Spinner, team: Spinner, description: String)
+}
+
+interface OurScheduleListActionsHandler {
+    fun onViewClicked(v: View, schedule: ScheduleData)
 }

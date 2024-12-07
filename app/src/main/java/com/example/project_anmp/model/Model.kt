@@ -83,3 +83,20 @@ data class Team(
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
 }
+
+@Entity(
+    tableName = "schedules",
+)
+@Parcelize
+data class ScheduleData(
+    val event: String,
+    val game: String,
+    val team: String,
+    val datetime: String,
+    val location: String,
+    val venue_photo: String,
+    val description: String
+) : Parcelable {
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}

@@ -7,12 +7,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [User::class, Proposal::class, GameData::class, Team::class], version = 1)
+@Database(entities = [User::class, Proposal::class, GameData::class, Team::class, ScheduleData::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun proposalDao(): ProposalDao
     abstract fun gameDao(): GameDao
     abstract fun teamDao(): TeamDao
+    abstract fun scheduleDao(): ScheduleDao
 
     companion object {
         @Volatile
@@ -192,6 +193,53 @@ abstract class AppDatabase : RoomDatabase() {
                         game = "Fortnite",
                         name = "Battle Royals",
                         user = "SquadLeader"
+                    )
+                )
+                db.scheduleDao().insertSchedule(
+                    ScheduleData(
+                        event = "Regional Qualifier - Valorant",
+                        game = "Valorant",
+                        team = "Team A",
+                        datetime = "2023-09-05T10:00:00",
+                        location = "Los Angeles, CA",
+                        venue_photo = "https://live.staticflickr.com/65535/52699161503_fe86be5a4d_h.jpg",
+                        description = "This high-stakes event will bring together top teams from across the region, all competing for a chance to advance to the national finals. Expect intense gameplay, strategic plays, and thrilling moments as teams battle it out in one of the most popular first-person shooters."
+                    ),
+                    ScheduleData(
+                        event = "League of Legends Workshop",
+                        game = "LOL",
+                        team = "Team C",
+                        datetime = "2023-09-10T11:00:00",
+                        location = "San Francisco, CA",
+                        venue_photo = "https://steamuserimages-a.akamaihd.net/ugc/941709610193363954/52EC15F168C8605FF7C0CC8F1C77793F9DF63B6C/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false",
+                        description = "Join this comprehensive workshop where professionals share strategies and tips to dominate the Summoner's Rift in League of Legends. Perfect for players looking to improve their skills and teamwork."
+                    ),
+                    ScheduleData(
+                        event = "Call of Duty Championship",
+                        game = "COD",
+                        team = "Team A",
+                        datetime = "2023-10-07T12:00:00",
+                        location = "New York, NY",
+                        venue_photo = "https://ik.imagekit.io/0eqydxstn/Call_of_Duty-_Competitive_History.jpeg",
+                        description = "Top teams from across the globe will face off in the Call of Duty Championship. Watch the intense competition as teams fight for glory in this fast-paced and tactical shooter game."
+                    ),
+                    ScheduleData(
+                        event = "Dota 2 Livestream",
+                        game = "Dota 2",
+                        team = "Team B",
+                        datetime = "2023-11-11T14:00:00",
+                        location = "Online",
+                        venue_photo = "https://asset-2.tstatic.net/banjarmasin/foto/bank/images/live-streaming-dota-2-kkg-vs-ugm-liga-game-indonesia-bersama-coki-muslim.jpg",
+                        description = "Witness Team B as they showcase their mastery of Dota 2 in an exclusive online livestream event, complete with expert commentary and live audience interactions."
+                    ),
+                    ScheduleData(
+                        event = "Fortnite Invitational",
+                        game = "Fortnite",
+                        team = "Team A",
+                        datetime = "2023-12-04T15:00:00",
+                        location = "Las Vegas, NV",
+                        venue_photo = "https://cdn-0001.qstv.on.epicgames.com/wnXXbcizlQjNMUrMAJ/image/landscape_comp.jpeg",
+                        description = "Watch the best Fortnite players compete in this invitational event featuring high-level gameplay, crazy builds, and intense battles to be the last one standing."
                     )
                 )
             }.start()

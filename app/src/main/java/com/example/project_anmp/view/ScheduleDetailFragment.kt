@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter
 
 class ScheduleDetailFragment : Fragment() {
     private lateinit var binding: FragmentScheduleDetailBinding
-    private lateinit var schedule:Schedule
+    private lateinit var schedule: Schedule
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

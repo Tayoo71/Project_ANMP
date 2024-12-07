@@ -114,7 +114,7 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="selectedSchedule"
-            app:argType="com.example.project_anmp.model.Schedule" />
+            app:argType="com.example.project_anmp.model.ScheduleData" />
     </fragment>
     <fragment
         android:id="@+id/itemSignIn"

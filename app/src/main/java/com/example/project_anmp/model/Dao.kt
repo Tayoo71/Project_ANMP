@@ -56,3 +56,12 @@ interface TeamDao{
     @Query("SELECT DISTINCT name from teams where game = :game ORDER BY name ASC")
     fun getTeamsByGame(game: String): List<String>
 }
+
+@Dao
+interface ScheduleDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertSchedule(vararg schedule: ScheduleData)
+
+    @Query("SELECT * FROM schedules ORDER BY datetime DESC")
+    fun getAllSchedules(): List<ScheduleData>
+}

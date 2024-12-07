@@ -2,16 +2,16 @@ package com.example.project_anmp.view
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project_anmp.databinding.OurScheduleListItemBinding
-import com.example.project_anmp.model.Schedule
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import com.example.project_anmp.model.ScheduleData
 
-class OurScheduleListAdapter (val ourScheduleList:ArrayList<Schedule>):
-RecyclerView.Adapter<OurScheduleListAdapter.OurScheduleViewHolder>()
+class OurScheduleListAdapter (val ourScheduleList:ArrayList<ScheduleData>):
+RecyclerView.Adapter<OurScheduleListAdapter.OurScheduleViewHolder>(),
+    OurScheduleListActionsHandler
 {
     class OurScheduleViewHolder(var binding: OurScheduleListItemBinding):
     RecyclerView.ViewHolder(binding.root)
@@ -26,39 +26,20 @@ RecyclerView.Adapter<OurScheduleListAdapter.OurScheduleViewHolder>()
     }
 
     override fun onBindViewHolder(holder: OurScheduleViewHolder, position: Int) {
-        holder.binding.txtDateEvent.text = formatDateTime(ourScheduleList[position].datetime)
-        holder.binding.txtNameEvent.text = ourScheduleList[position].event
-        holder.binding.txtTeamName.text = ourScheduleList[position].game + " - " + ourScheduleList[position].team
-
-        //When Card is Clicked
-        holder.binding.cardOurSchedule.setOnClickListener {
-            val action = OurScheduleFragmentDirections.actionScheduleDetail(ourScheduleList[position])
-            Navigation.findNavController(it).navigate(action)
-        }
-    }
-
-    // Fungsi untuk memformat datetime menjadi format 05\nSEP
-    fun formatDateTime(datetime: String): String {
-        // Parsing datetime dari string menjadi LocalDateTime
-        val parsedDateTime = LocalDateTime.parse(datetime, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-
-        // Membuat formatter untuk mengambil hari dan bulan
-        val dayFormatter = DateTimeFormatter.ofPattern("dd")
-        val monthFormatter = DateTimeFormatter.ofPattern("MMM").withLocale(java.util.Locale.ENGLISH)
-
-        // Mengambil hari dan bulan
-        val day = parsedDateTime.format(dayFormatter)
-        val month = parsedDateTime.format(monthFormatter).uppercase() // Bulan dalam huruf besar
-
-        // Menggabungkan hari dan bulan dengan newline di antaranya
-        return "$day\n$month"
+        holder.binding.listener = this
+        holder.binding.schedule = ourScheduleList[position]
     }
 
     // Fungsi untuk memperbarui daftar Schedule
     @SuppressLint("NotifyDataSetChanged")
-    fun updateOurScheduleList(newOurScheduleList: ArrayList<Schedule>) {
+    fun updateOurScheduleList(newOurScheduleList: List<ScheduleData>) {
         ourScheduleList.clear()
         ourScheduleList.addAll(newOurScheduleList)
         notifyDataSetChanged()
+    }
+
+    override fun onViewClicked(v: View, schedule: ScheduleData) {
+        val action = OurScheduleFragmentDirections.actionScheduleDetail(schedule)
+        Navigation.findNavController(v).navigate(action)
     }
 }
