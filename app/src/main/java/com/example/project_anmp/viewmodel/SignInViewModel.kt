@@ -19,11 +19,6 @@ class SignInViewModel (application: Application) : AndroidViewModel(application)
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
-    override fun onCleared() {
-        super.onCleared()
-        job.cancel()
-    }
-
     fun signIn(username: String, password: String) {
         launch {
             val db = buildDatabase(getApplication())

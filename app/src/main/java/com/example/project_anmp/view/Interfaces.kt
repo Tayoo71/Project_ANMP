@@ -1,6 +1,7 @@
 package com.example.project_anmp.view
 
 import android.view.View
+import android.widget.Spinner
 import com.example.project_anmp.model.User
 
 interface SignUpActionsHandler {
@@ -16,4 +17,8 @@ interface SignInActionsHandler{
 interface ApplyTeamActionsHandler{
     fun onFabAddClicked(v: View)
     fun onRefresh()
+}
+
+interface NewApplyTeamActionsHandler{
+    fun onSubmitClicked(game: Spinner, team: Spinner, description: String)
 }

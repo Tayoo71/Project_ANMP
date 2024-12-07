@@ -23,6 +23,10 @@ class ListApplyTeamViewModel(application: Application)
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
+    }
 
     fun refresh() {
         loadingLD.value = true

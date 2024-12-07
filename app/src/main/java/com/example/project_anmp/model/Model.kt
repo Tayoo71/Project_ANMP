@@ -57,7 +57,28 @@ data class Proposal(
     val game: String,
     val team: String,
     val reason: String,
+    val username: String,
     val status: String
+){
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}
+
+@Entity(tableName = "games")
+data class GameData(
+    val name: String,
+    val description: String,
+    val urlLink: String,
+){
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}
+
+@Entity(tableName = "teams")
+data class Team(
+    val game: String,
+    val name: String,
+    val user: String,
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0

@@ -31,3 +31,28 @@ interface ProposalDao {
     @Query("SELECT * FROM proposals ORDER BY uuid DESC")
     fun getAllProposals(): List<Proposal>
 }
+
+@Dao
+interface GameDao {
+    // Insert a new game
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun insertGame(vararg game: GameData)
+
+    // Get all games data
+    @Query("SELECT * FROM games ORDER BY name ASC")
+    fun getAllGames(): List<GameData>
+
+    // Get all games names
+    @Query("SELECT name FROM games ORDER BY name ASC")
+    fun getAllGamesNames(): List<String>
+}
+
+@Dao
+interface TeamDao{
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun insertTeam(vararg team: Team)
+
+    // (Prevent multiple data or teams returned using DISTINCT)
+    @Query("SELECT DISTINCT name from teams where game = :game ORDER BY name ASC")
+    fun getTeamsByGame(game: String): List<String>
+}

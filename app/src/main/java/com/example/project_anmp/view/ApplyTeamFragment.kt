@@ -81,4 +81,9 @@ class ApplyTeamFragment : Fragment(), ApplyTeamActionsHandler {
         binding.refreshLayout.isRefreshing = false
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Refresh data when fragment is visible again
+        viewModel.refresh()
+    }
 }

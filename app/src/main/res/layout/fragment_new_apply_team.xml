@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View" />
+        <variable
+            name="handler"
+            type="com.example.project_anmp.view.NewApplyTeamActionsHandler" />
     </data>
 
     <FrameLayout
@@ -52,34 +55,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerGame" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
+            <EditText
+                android:id="@+id/txtDescription"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="225dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:hint="Description"
+                android:inputType="text|textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerTeam">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:gravity="start|top"
-                    android:hint="Description" />
-            </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintTop_toBottomOf="@+id/spinnerTeam" />
 
             <Button
                 android:id="@+id/txtApply"
+                android:onClick="@{() -> handler.onSubmitClicked(spinnerGame, spinnerTeam,
+                        txtDescription.getText().toString())}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="Apply Team"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
