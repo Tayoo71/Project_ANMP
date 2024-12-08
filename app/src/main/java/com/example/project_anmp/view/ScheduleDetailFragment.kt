@@ -1,24 +1,21 @@
 package com.example.project_anmp.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.project_anmp.databinding.FragmentScheduleDetailBinding
-import com.example.project_anmp.model.Schedule
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
-import java.lang.Exception
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import com.example.project_anmp.viewmodel.ScheduleDetailViewModel
 
 
-class ScheduleDetailFragment : Fragment() {
+class ScheduleDetailFragment : Fragment(), ScheduleDetailActionsHandler {
     private lateinit var binding: FragmentScheduleDetailBinding
-    private lateinit var schedule: Schedule
+    private lateinit var viewModel: ScheduleDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,66 +28,39 @@ class ScheduleDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val selectedSchedule = ScheduleDetailFragmentArgs.fromBundle(requireArguments()).selectedSchedule
-        binding.txtEventName.text =selectedSchedule.event
-        binding.txtLoc.text = selectedSchedule.location + formatTime(selectedSchedule.datetime)
-        binding.txtTeam.text = selectedSchedule.team + " - " + selectedSchedule.game
-        binding.txtDescription.text = selectedSchedule.description
+        viewModel = ViewModelProvider(this).get(ScheduleDetailViewModel::class.java)
+        viewModel.refresh(ScheduleDetailFragmentArgs.fromBundle(requireArguments()).selectedSchedule)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.listener = this
 
-        // Load Gambar using Picasso
-        val picasso = Picasso.Builder(binding.root.context)
-        picasso.listener{picasso, uri, exception ->
-            exception.printStackTrace()
-        }
-        picasso.build().load(selectedSchedule.venue_photo).into(binding.imgProfile,
-            object: Callback {
-                override fun onSuccess() {
-                    binding.progressImage.visibility = View.INVISIBLE
-                    binding.imgProfile.visibility = View.VISIBLE
-                }
+        observeViewModel()
+    }
 
-                override fun onError(e: Exception?) {
-                    Log.e("picasso_error", e.toString())
-                }
-            })
+    fun observeViewModel(){
+        viewModel.scheduleDetailLD.observe(viewLifecycleOwner, Observer {
+            binding.schedule = it
+        })
+    }
 
-
-        // Handle btnNotify click
-        binding.btnNotify.setOnClickListener {
-            if (binding.btnNotify.text == "Disable Notification") {
-                // Membatalkan notifikasi dan mengubah teks tombol menjadi "Notify Me"
+    override fun buttonNotifyClicked(v: View) {
+        if(v is Button) {
+            viewModel.toggleNotification()
+            if (v.text.toString() == "Disable Notification") {
                 Toast.makeText(
                     context,
                     "Notification has been canceled. You will no longer receive reminders for this schedule.",
                     Toast.LENGTH_LONG
                 ).show()
-
-                binding.btnNotify.text = "Notify Me"
-            } else {
-                // Mengaktifkan notifikasi dan mengubah teks tombol menjadi "Disable Notification"
+            }
+            else {
                 Toast.makeText(
                     context,
                     "You will be notified when the schedule starts. Notifications have been successfully enabled.",
                     Toast.LENGTH_LONG
                 ).show()
-
-                binding.btnNotify.text = "Disable Notification"
             }
         }
-    }
-
-    fun formatTime(datetime: String): String {
-        // Parsing datetime dari string menjadi LocalDateTime
-        val parsedDateTime = LocalDateTime.parse(datetime, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-
-        // Membuat formatter untuk mengambil waktu dalam format 12-jam (AM/PM)
-        val timeFormatter = DateTimeFormatter.ofPattern("hh:mm a")
-
-        // Mengambil waktu dan memformatnya
-        val time = parsedDateTime.format(timeFormatter)
-
-        // Mengembalikan waktu yang diformat
-        return " (" + time + ")"
     }
 
 }
