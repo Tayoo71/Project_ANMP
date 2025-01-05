@@ -46,7 +46,8 @@ data class User(
     @ColumnInfo(name = "username")
     var username:String,
     @ColumnInfo(name = "password")
-    var password:String
+    var password:String,
+    var like: Boolean = false
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
@@ -99,4 +100,14 @@ data class ScheduleData(
 ) : Parcelable {
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
+}
+
+@Entity(
+    tableName = "likes",
+)
+data class LikeData(
+    val like : Int,
+){
+    @PrimaryKey(autoGenerate = true)
+    var id:Int = 0
 }

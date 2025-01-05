@@ -7,13 +7,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [User::class, Proposal::class, GameData::class, Team::class, ScheduleData::class], version = 1)
+@Database(entities = [User::class, Proposal::class, GameData::class, Team::class, ScheduleData::class, LikeData::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun proposalDao(): ProposalDao
     abstract fun gameDao(): GameDao
     abstract fun teamDao(): TeamDao
     abstract fun scheduleDao(): ScheduleDao
+    abstract fun likeDao(): LikeDao
 
     companion object {
         @Volatile
@@ -48,8 +49,8 @@ abstract class AppDatabase : RoomDatabase() {
             Thread {
                 val db = getInstance(context)
                 db.userDao().insertUser(
-                    User(username = "admin", password = "admin", firstName = "Admin", lastName = "User"),
-                    User(username = "guest", password = "guest", firstName = "Guest", lastName = "User")
+                    User(username = "admin", password = "admin", firstName = "Admin", lastName = "User", like = false),
+                    User(username = "guest", password = "guest", firstName = "Guest", lastName = "User", like = false)
                 )
                 db.proposalDao().insertProposal(
                     Proposal(
@@ -240,6 +241,11 @@ abstract class AppDatabase : RoomDatabase() {
                         location = "Las Vegas, NV",
                         venue_photo = "https://cdn-0001.qstv.on.epicgames.com/wnXXbcizlQjNMUrMAJ/image/landscape_comp.jpeg",
                         description = "Watch the best Fortnite players compete in this invitational event featuring high-level gameplay, crazy builds, and intense battles to be the last one standing."
+                    )
+                )
+                db.likeDao().insertLike(
+                    LikeData(
+                        like = 0
                     )
                 )
             }.start()

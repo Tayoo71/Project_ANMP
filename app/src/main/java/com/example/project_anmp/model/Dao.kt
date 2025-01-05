@@ -19,6 +19,12 @@ interface UserDao {
     // Query to get user data for sign-in validation
     @Query("SELECT * FROM users WHERE username = :username AND password = :password")
     fun getUserForSignIn(username: String, password: String): User?
+
+    @Query("SELECT `like` FROM users WHERE username = :username")
+    fun getUserLike(username: String): Boolean
+
+    @Query("UPDATE users SET `like` = :newLikeStatus WHERE username = :username")
+    fun updateUserLikeStatus(username: String, newLikeStatus: Boolean): Unit
 }
 
 @Dao
@@ -64,4 +70,16 @@ interface ScheduleDao {
 
     @Query("SELECT * FROM schedules ORDER BY datetime DESC")
     fun getAllSchedules(): List<ScheduleData>
+}
+
+@Dao
+interface LikeDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertLike(vararg like: LikeData)
+
+    @Query("SELECT * FROM likes")
+    fun getLike(): LikeData
+
+    @Query("UPDATE likes SET `like` = :newLike WHERE id = :id")
+    fun updateLike(id: Int, newLike: Int)
 }
