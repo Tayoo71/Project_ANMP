@@ -66,11 +66,12 @@ data class Proposal(
 }
 
 @Entity(tableName = "games")
+@Parcelize
 data class GameData(
     val name: String,
     val description: String,
     val urlLink: String,
-){
+): Parcelable{
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
 }
@@ -107,6 +108,18 @@ data class ScheduleData(
 )
 data class LikeData(
     val like : Int,
+){
+    @PrimaryKey(autoGenerate = true)
+    var id:Int = 0
+}
+
+@Entity(
+    tableName = "achievements"
+)
+data class AchievementData(
+    val gameName: String,
+    val year: String,
+    val achievementDescription: String,
 ){
     @PrimaryKey(autoGenerate = true)
     var id:Int = 0

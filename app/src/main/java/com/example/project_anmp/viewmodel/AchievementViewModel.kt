@@ -9,56 +9,53 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.project_anmp.model.Achievement
+import com.example.project_anmp.model.AchievementData
+import com.example.project_anmp.model.AppDatabase.Companion.buildDatabase
 import com.example.project_anmp.model.Game
 import com.example.project_anmp.model.Schedule
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class AchievementViewModel(application: Application) : AndroidViewModel(application) {
-    val achievementLD = MutableLiveData<ArrayList<Achievement>>()
+class AchievementViewModel(application: Application) : AndroidViewModel(application),
+    CoroutineScope{
+
+    val achievementLD = MutableLiveData<List<AchievementData>>()
     val achievementLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
 
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
-
     // Fungsi untuk memuat data dari server (atau sumber data lainnya)
-    fun refresh(){
+    private var job = Job()
+
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
+    }
+
+    // Function to refresh and load data from the server
+    fun refresh() {
         achievementLoadErrorLD.value = false
         loadingLD.value = true
 
-        val url = "https://raw.githubusercontent.com/Tayoo71/Project_ANMP/refs/heads/master/API_JSON/Achievement.json"
-
-        try{
-            queue = Volley.newRequestQueue(getApplication())
-            val stringRequest = StringRequest(
-                Request.Method.GET, url, { response ->
-                    // Jika berhasil mengambil data
-                    val sType = object : TypeToken<ArrayList<Achievement>>() {}.type
-                    val result = Gson().fromJson<ArrayList<Achievement>>(response, sType)
-                    achievementLD.value = result
-                    loadingLD.value = false
-                    Log.d("showVolley", result.toString())
-                }, { error ->
-                    // Jika gagal mengambil data
-                    Log.d("showVolley", error.toString())
-                    achievementLoadErrorLD.value = true
-                    loadingLD.value = false
-                }
-            )
-
-            stringRequest.tag = TAG
-            queue?.add(stringRequest)
-        } catch (e: JsonSyntaxException) {
-            // Handle single object or other response types
-            Log.e("GsonError", "Error parsing JSON", e)
+        launch {
+            val db = buildDatabase(getApplication())
+            try {
+                val achievements = db.achievementDao().getAllAchievement()
+                achievementLD.postValue(achievements)
+                loadingLD.postValue(false)
+            } catch (e: Exception) {
+                // Handle the error and set the loadError LiveData
+                achievementLoadErrorLD.postValue(true)
+                loadingLD.postValue(false)
+            }
         }
-    }
-
-    // Fungsi ini akan dipanggil ketika ViewModel dihapus dari memori
-    override fun onCleared() {
-        super.onCleared()
-        queue?.cancelAll(TAG)
     }
 }

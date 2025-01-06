@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project_anmp.databinding.WwpListItemBinding
-import com.example.project_anmp.model.Game
+import com.example.project_anmp.model.GameData
 import com.squareup.picasso.Picasso
 
-class WhatWePlayAdapter(val whatWePlayList: ArrayList<Game>) : RecyclerView.Adapter<WhatWePlayAdapter.WhatWePlayViewHolder>() {
+class WhatWePlayAdapter(val whatWePlayList: ArrayList<GameData>) :
+    RecyclerView.Adapter<WhatWePlayAdapter.WhatWePlayViewHolder>() {
 
     class WhatWePlayViewHolder(val binding: WwpListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -38,7 +39,7 @@ class WhatWePlayAdapter(val whatWePlayList: ArrayList<Game>) : RecyclerView.Adap
         //holder.binding.cardWhatWePlay.setOnClickListener {
         //}
     }
-    fun updateWhatWePlayList(newWhatWePlayList: ArrayList<Game>) {
+    fun updateWhatWePlayList(newWhatWePlayList: List<GameData>) {
         whatWePlayList.clear()
         whatWePlayList.addAll(newWhatWePlayList)
         notifyDataSetChanged()

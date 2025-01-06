@@ -64,6 +64,9 @@ interface TeamDao{
     // (Prevent multiple data or teams returned using DISTINCT)
     @Query("SELECT DISTINCT name from teams where game = :game ORDER BY name ASC")
     fun getTeamsByGame(game: String): List<String>
+
+    @Query("SELECT * from teams")
+    fun getTeams(): List<Team>
 }
 
 @Dao
@@ -85,4 +88,13 @@ interface LikeDao {
 
     @Query("UPDATE likes SET `like` = :newLike WHERE id = :id")
     fun updateLike(id: Int, newLike: Int)
+}
+
+@Dao
+interface achievementDao{
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAchievement(vararg schedule: AchievementData)
+
+    @Query("SELECT * FROM achievements ORDER BY year DESC")
+    fun getAllAchievement(): List<AchievementData>
 }

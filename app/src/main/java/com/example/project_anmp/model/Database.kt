@@ -7,7 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [User::class, Proposal::class, GameData::class, Team::class, ScheduleData::class, LikeData::class], version = 1)
+@Database(entities = [User::class, Proposal::class, GameData::class, Team::class, ScheduleData::class, LikeData::class, AchievementData::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun proposalDao(): ProposalDao
@@ -15,6 +15,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun teamDao(): TeamDao
     abstract fun scheduleDao(): ScheduleDao
     abstract fun likeDao(): LikeDao
+    abstract fun achievementDao(): achievementDao
 
     companion object {
         @Volatile
@@ -246,6 +247,133 @@ abstract class AppDatabase : RoomDatabase() {
                 db.likeDao().insertLike(
                     LikeData(
                         like = 0
+                    )
+                )
+                db.achievementDao().insertAchievement(
+                    AchievementData(
+                        gameName = "Valorant",
+                        year = "2022",
+                        achievementDescription = "Spring Valorant Cup (2022) - Team A: Flawless Victory"
+                    ),
+                    AchievementData(
+                        gameName = "Valorant",
+                        year = "2023",
+                        achievementDescription = "Winter Valorant Clash (2023) - Team B: Dominant Performance"
+                    ),
+                    AchievementData(
+                        gameName = "Valorant",
+                        year = "2023",
+                        achievementDescription = "Valorant Elite Series (2023) - Team C: MVP Award"
+                    ),
+                    AchievementData(
+                        gameName = "Valorant",
+                        year = "2024",
+                        achievementDescription = "International Valorant Masters (2024) - Team A: Runner-Up"
+                    ),
+                    AchievementData(
+                        gameName = "Valorant",
+                        year = "2024",
+                        achievementDescription = "Valorant Pro Defense Award (2024) - Team B: Best Defensive Play"
+                    ),
+                    AchievementData(
+                        gameName = "League of Legends",
+                        year = "2022",
+                        achievementDescription = "Summer LoL Invitational (2022) - Team A: Flawless Run"
+                    ),
+                    AchievementData(
+                        gameName = "League of Legends",
+                        year = "2023",
+                        achievementDescription = "LoL Global Championship (2023) - Team B: Grand Winner"
+                    ),
+                    AchievementData(
+                        gameName = "League of Legends",
+                        year = "2023",
+                        achievementDescription = "International LoL Showdown (2023) - Team C: Top 8 Finish"
+                    ),
+                    AchievementData(
+                        gameName = "League of Legends",
+                        year = "2024",
+                        achievementDescription = "LoL Star MVP (2024) - Team A: Outstanding Player"
+                    ),
+                    AchievementData(
+                        gameName = "League of Legends",
+                        year = "2024",
+                        achievementDescription = "LoL Best Defensive Team Award (2024) - Team B"
+                    ),
+                    AchievementData(
+                        gameName = "Call of Duty",
+                        year = "2022",
+                        achievementDescription = "Call of Duty Summer Season (2022) - Team C: Unbeaten"
+                    ),
+                    AchievementData(
+                        gameName = "Call of Duty",
+                        year = "2023",
+                        achievementDescription = "Regional COD Masters (2023) - Team A: First Place"
+                    ),
+                    AchievementData(
+                        gameName = "Call of Duty",
+                        year = "2023",
+                        achievementDescription = "COD World Series (2023) - Team B: Top 6 Performance"
+                    ),
+                    AchievementData(
+                        gameName = "Call of Duty",
+                        year = "2024",
+                        achievementDescription = "COD MVP Award (2024) - Team C: Star Player"
+                    ),
+                    AchievementData(
+                        gameName = "Call of Duty",
+                        year = "2024",
+                        achievementDescription = "COD Defense Champions (2024) - Team A"
+                    ),
+                    AchievementData(
+                        gameName = "Dota 2",
+                        year = "2022",
+                        achievementDescription = "Summer Dota Open (2022) - Team B: Unstoppable"
+                    ),
+                    AchievementData(
+                        gameName = "Dota 2",
+                        year = "2022",
+                        achievementDescription = "The International 11 (2022) - Team C: Top 5 Finish"
+                    ),
+                    AchievementData(
+                        gameName = "Dota 2",
+                        year = "2023",
+                        achievementDescription = "Regional Dota 2 League (2023) - Team A: Champions"
+                    ),
+                    AchievementData(
+                        gameName = "Dota 2",
+                        year = "2024",
+                        achievementDescription = "Dota 2 Most Valuable Player (2024) - Team B"
+                    ),
+                    AchievementData(
+                        gameName = "Dota 2",
+                        year = "2024",
+                        achievementDescription = "Dota 2 Defense Masters (2024) - Team C"
+                    ),
+                    AchievementData(
+                        gameName = "Fortnite",
+                        year = "2022",
+                        achievementDescription = "Fortnite Winter Royale (2022) - Team A: Flawless Win"
+                    ),
+                    AchievementData(
+                        gameName = "Fortnite",
+                        year = "2022",
+                        achievementDescription = "Fortnite Regional Clash (2022) - Team B: Top 10 Finish"
+                    ),
+                    AchievementData(
+                        gameName = "Fortnite",
+                        year = "2023",
+                        achievementDescription = "Fortnite Championship Series (2023) - Team C: Victors"
+                    ),
+                    AchievementData(
+                        gameName = "Fortnite",
+                        year = "2024",
+                        achievementDescription = "Fortnite MVP Award (2024) - Team A"
+                    ),
+                    AchievementData(
+                        gameName = "Fortnite",
+                        year = "2024",
+                        achievementDescription = "Fortnite Defense Excellence Award (2024) - Team B"
                     )
                 )
             }.start()

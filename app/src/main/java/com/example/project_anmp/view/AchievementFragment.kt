@@ -16,7 +16,9 @@ import com.example.project_anmp.R
 import com.example.project_anmp.databinding.FragmentAchievementBinding
 import com.example.project_anmp.databinding.FragmentTeamsDetailBinding
 import com.example.project_anmp.model.Achievement
+import com.example.project_anmp.model.AchievementData
 import com.example.project_anmp.model.Game
+import com.example.project_anmp.model.GameData
 import com.example.project_anmp.view.OurScheduleListAdapter.OurScheduleViewHolder
 import com.example.project_anmp.viewmodel.AchievementViewModel
 import com.example.project_anmp.viewmodel.OurScheduleViewModel
@@ -114,7 +116,7 @@ class AchievementFragment : Fragment() {
         }
     }
 
-    private fun updateAchievementList(achievementList: List<Achievement>, selectedGame: Game) {
+    private fun updateAchievementList(achievementList: List<AchievementData>, selectedGame: GameData) {
         achievementYear = mutableListOf("All")
         achievementDescriptions = mutableListOf<String>()
 
