@@ -1,6 +1,8 @@
 package com.example.project_anmp.viewmodel
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -34,8 +36,17 @@ class ListApplyTeamViewModel(application: Application)
         launch {
             val db = buildDatabase(getApplication())
             try {
-                val proposals = db.proposalDao().getAllProposals()
-                proposalLD.postValue(proposals)
+                val shared:SharedPreferences = getApplication<Application>().getSharedPreferences("com.example.project_anmp",
+                    Context.MODE_PRIVATE)
+                val username = shared.getString("username", null)
+                if(username == "admin"){
+                    val proposals = db.proposalDao().getAllProposalsAdmin()
+                    proposalLD.postValue(proposals)
+                }
+                else{
+                    val proposals = username?.let { db.proposalDao().getListProposal(it) }
+                    proposalLD.postValue(proposals!!)
+                }
                 loadingLD.postValue(false)
             } catch (e: Exception) {
                 // Handle the error and set the loadError LiveData

@@ -51,7 +51,7 @@
                     android:id="@+id/txtError"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Error While Loading Data"
+                    android:text="Proposal is Not Found"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

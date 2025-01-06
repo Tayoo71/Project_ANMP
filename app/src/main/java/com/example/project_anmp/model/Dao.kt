@@ -35,7 +35,10 @@ interface ProposalDao {
 
     // Get all proposals
     @Query("SELECT * FROM proposals ORDER BY uuid DESC")
-    fun getAllProposals(): List<Proposal>
+    fun getAllProposalsAdmin(): List<Proposal>
+
+    @Query("SELECT * FROM proposals WHERE username = :username ORDER BY uuid DESC")
+    fun getListProposal(username: String): List<Proposal>
 }
 
 @Dao
