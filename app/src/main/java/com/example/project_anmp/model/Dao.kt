@@ -67,6 +67,9 @@ interface TeamDao{
 
     @Query("SELECT * from teams")
     fun getTeams(): List<Team>
+
+    @Query("SELECT * from teams where game = :game and name= :name ORDER BY name ASC")
+    fun getTeamsByGameName(game: String, name: String): List<Team>
 }
 
 @Dao

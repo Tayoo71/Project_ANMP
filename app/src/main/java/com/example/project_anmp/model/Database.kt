@@ -101,100 +101,143 @@ abstract class AppDatabase : RoomDatabase() {
                     Team(
                         game = "Valorant",
                         name = "Shadow Strike",
-                        user = "AgentPhoenix"
+                        user = "AgentPhoenix",
+                        role = "Duelist",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-girl-gaming-holding-joystick-cartoon-icon-illustration_138676-2969.jpg"
                     ),
                     Team(
                         game = "Valorant",
                         name = "Shadow Strike",
-                        user = "AgentViper"
+                        user = "AgentViper",
+                        role = "Controller",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-boy-gaming-holding-joystick-cartoon-icon-illustration_138676-2968.jpg"
                     ),
                     Team(
                         game = "Valorant",
                         name = "Vanguard",
-                        user = "SniperX"
+                        user = "SniperX",
+                        role = "Initiator",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-boy-gaming-holding-joystick-cartoon-icon-illustration_138676-2970.jpg"
                     ),
                     Team(
                         game = "Valorant",
                         name = "Vanguard",
-                        user = "BladeRunner"
+                        user = "BladeRunner",
+                        role = "Sentinel",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-girl-gaming-holding-joystick-cartoon-icon-illustration_138676-2971.jpg"
                     ),
 
                     // League of Legends Teams
                     Team(
                         game = "League of Legends",
                         name = "Team A",
-                        user = "ADCMaster"
+                        user = "ADCMaster",
+                        role = "AD Carry",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-boy-playing-computer-game-cartoon-icon-illustration_138676-2741.jpg"
                     ),
                     Team(
                         game = "League of Legends",
                         name = "Team A",
-                        user = "MidLaneMage"
+                        user = "MidLaneMage",
+                        role = "Mid Lane",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-girl-playing-computer-game-cartoon-icon-illustration_138676-2742.jpg"
                     ),
                     Team(
                         game = "League of Legends",
                         name = "Team B",
-                        user = "TankTop"
+                        user = "TankTop",
+                        role = "Top Lane",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-boy-playing-computer-game-cartoon-icon-illustration_138676-2743.jpg"
                     ),
                     Team(
                         game = "League of Legends",
                         name = "Team B",
-                        user = "SupportWizard"
+                        user = "SupportWizard",
+                        role = "Support",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-girl-playing-computer-game-cartoon-icon-illustration_138676-2744.jpg"
                     ),
 
                     // Call of Duty Teams
                     Team(
                         game = "Call of Duty",
                         name = "Team C",
-                        user = "SniperElite"
+                        user = "SniperElite",
+                        role = "Sniper",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-boy-playing-shooter-game-cartoon-icon-illustration_138676-2745.jpg"
                     ),
                     Team(
                         game = "Call of Duty",
                         name = "Team C",
-                        user = "RifleCommander"
+                        user = "RifleCommander",
+                        role = "Rifleman",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-girl-playing-shooter-game-cartoon-icon-illustration_138676-2746.jpg"
                     ),
 
                     // Dota 2 Teams
                     Team(
                         game = "Dota 2",
                         name = "Radiant Warriors",
-                        user = "InvokerGod"
+                        user = "InvokerGod",
+                        role = "Mid Lane",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-boy-playing-strategy-game-cartoon-icon-illustration_138676-2747.jpg"
                     ),
                     Team(
                         game = "Dota 2",
                         name = "Radiant Warriors",
-                        user = "CarryPlayer"
+                        user = "CarryPlayer",
+                        role = "Carry",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-girl-playing-strategy-game-cartoon-icon-illustration_138676-2748.jpg"
+                    ),
+                    Team(
+                        game = "Dota 2",
+                        name = "Radiant Warriors",
+                        user = "NotSupp",
+                        role = "Support",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-girl-playing-strategy-game-cartoon-icon-illustration_138676-2755.jpg"
                     ),
                     Team(
                         game = "Dota 2",
                         name = "Dire Demons",
-                        user = "SupportDemon"
+                        user = "SupportDemon",
+                        role = "Support",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-boy-playing-strategy-game-cartoon-icon-illustration_138676-2749.jpg"
                     ),
                     Team(
                         game = "Dota 2",
                         name = "Dire Demons",
-                        user = "OfflaneKing"
+                        user = "OfflaneKing",
+                        role = "Offlane",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-girl-playing-strategy-game-cartoon-icon-illustration_138676-2750.jpg"
                     ),
 
                     // Fortnite Teams
                     Team(
                         game = "Fortnite",
                         name = "Sky Builders",
-                        user = "BuildMaster"
+                        user = "BuildMaster",
+                        role = "Builder",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-boy-playing-battle-royale-game-cartoon-icon-illustration_138676-2751.jpg"
                     ),
                     Team(
                         game = "Fortnite",
                         name = "Sky Builders",
-                        user = "FortKnight"
+                        user = "FortKnight",
+                        role = "Warrior",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-girl-playing-battle-royale-game-cartoon-icon-illustration_138676-2752.jpg"
                     ),
                     Team(
                         game = "Fortnite",
                         name = "Battle Royals",
-                        user = "SoloKing"
+                        user = "SoloKing",
+                        role = "Solo Player",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-boy-playing-battle-royale-game-cartoon-icon-illustration_138676-2753.jpg"
                     ),
                     Team(
                         game = "Fortnite",
                         name = "Battle Royals",
-                        user = "SquadLeader"
+                        user = "SquadLeader",
+                        role = "Squad Leader",
+                        profilePictureUrl = "https://img.freepik.com/free-vector/cute-girl-playing-battle-royale-game-cartoon-icon-illustration_138676-2754.jpg"
                     )
                 )
                 db.scheduleDao().insertSchedule(

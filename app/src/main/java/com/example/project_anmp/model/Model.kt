@@ -81,6 +81,8 @@ data class Team(
     val game: String,
     val name: String,
     val user: String,
+    val role: String,
+    val profilePictureUrl: String
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
