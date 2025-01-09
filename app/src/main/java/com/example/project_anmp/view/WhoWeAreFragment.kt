@@ -27,7 +27,7 @@ class WhoWeAreFragment : Fragment() {
 
     private lateinit var binding: FragmentWhoWeAreBinding
     private lateinit var viewModel: WhoWeAreViewModel
-    private var likeCount = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,25 +40,25 @@ class WhoWeAreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val sharedPreferences = requireContext().getSharedPreferences("com.example.project_anmp", Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString("username", null)
+
+        binding.username = username
+
         // Inisialisasi ViewModel
         viewModel = ViewModelProvider(this).get(WhoWeAreViewModel::class.java)
         viewModel.refresh()
 
-        val sharedPreferences = requireContext().getSharedPreferences("com.example.project_anmp", Context.MODE_PRIVATE)
-        val username = sharedPreferences.getString("username", null)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         observeViewModel()
-
-        binding.button.setOnClickListener{
-            viewModel.getLikeStatus(username.toString())
-        }
     }
 
     fun observeViewModel(){
         // Mengamati LiveData yang berisi data like
         viewModel.likeCountLD.observe(viewLifecycleOwner) { LikeData ->
-            likeCount = LikeData.like
-            binding.textView3.text = likeCount.toString()
+            binding.likeCount = LikeData.like
         }
 
         viewModel.likeStatusLD.observe(viewLifecycleOwner) { status ->
@@ -67,6 +67,8 @@ class WhoWeAreFragment : Fragment() {
                 Context.MODE_PRIVATE
             )
                 .getString("username", null)
+
+            binding.username = username
 
             if (status == false) {
                 viewModel.increaseLike(username.toString())

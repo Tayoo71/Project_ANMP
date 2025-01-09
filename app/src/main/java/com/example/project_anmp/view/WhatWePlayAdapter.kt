@@ -1,6 +1,7 @@
 package com.example.project_anmp.view
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -9,9 +10,9 @@ import com.example.project_anmp.model.GameData
 import com.squareup.picasso.Picasso
 
 class WhatWePlayAdapter(val whatWePlayList: ArrayList<GameData>) :
-    RecyclerView.Adapter<WhatWePlayAdapter.WhatWePlayViewHolder>() {
+    RecyclerView.Adapter<WhatWePlayAdapter.WhatWePlayViewHolder>(), WhatWePlayListActionHandler {
 
-    class WhatWePlayViewHolder(val binding: WwpListItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class WhatWePlayViewHolder(var binding: WwpListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WhatWePlayViewHolder {
         val binding = WwpListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,19 +24,9 @@ class WhatWePlayAdapter(val whatWePlayList: ArrayList<GameData>) :
     }
 
     override fun onBindViewHolder(holder: WhatWePlayViewHolder, position: Int) {
-        holder.binding.txtNamaGame.text = whatWePlayList[position].name
-        holder.binding.txtDesc.text = whatWePlayList[position].description
-        Picasso.get()
-            .load(whatWePlayList[position].urlLink)
-            .into(holder.binding.imageView)
-        holder.binding.btnTeam.setOnClickListener {
-            val action = WhatWePlayFragmentDirections.actionWhatWePlayFragmentToTeamsFragment(whatWePlayList[position])
-            Navigation.findNavController(it).navigate(action)
-        }
-        holder.binding.btnAchievement.setOnClickListener {
-            val action = WhatWePlayFragmentDirections.actionWhatWePlayFragmentToAchievementFragment(whatWePlayList[position])
-            Navigation.findNavController(it).navigate(action)
-        }
+        holder.binding.listener = this
+        holder.binding.game = whatWePlayList[position]
+
         //holder.binding.cardWhatWePlay.setOnClickListener {
         //}
     }
@@ -45,4 +36,13 @@ class WhatWePlayAdapter(val whatWePlayList: ArrayList<GameData>) :
         notifyDataSetChanged()
     }
 
+    override fun onButtonAchievementClicked(v: View, game: GameData) {
+        val action = WhatWePlayFragmentDirections.actionWhatWePlayFragmentToAchievementFragment(game)
+        Navigation.findNavController(v).navigate(action)
+    }
+
+    override fun onButtonTeamClicked(v: View, game: GameData) {
+        val action = WhatWePlayFragmentDirections.actionWhatWePlayFragmentToTeamsFragment(game)
+        Navigation.findNavController(v).navigate(action)
+    }
 }

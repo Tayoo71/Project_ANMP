@@ -3,6 +3,7 @@ package com.example.project_anmp.view
 import android.view.View
 import android.widget.Button
 import android.widget.Spinner
+import com.example.project_anmp.model.GameData
 import com.example.project_anmp.model.ScheduleData
 import com.example.project_anmp.model.User
 
@@ -31,4 +32,9 @@ interface OurScheduleListActionsHandler {
 
 interface ScheduleDetailActionsHandler{
     fun buttonNotifyClicked(v: View)
+}
+
+interface WhatWePlayListActionHandler {
+    fun onButtonAchievementClicked(v: View, game: GameData)
+    fun onButtonTeamClicked(v: View, game: GameData)
 }
